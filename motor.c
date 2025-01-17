@@ -34,11 +34,13 @@ void  Motor_Stop(){// 两电机停止
 void Motor_TempForward(int time) {// 直行指定秒数
     timer_count = 0;
 
+	LF = 1;
+	LB = 0;
+	RF = 1;
+	RB = 0;
+
 	while (timer_count < time){
-		LF = 1;
-		LB = 0;
-		RF = 1;
-		RB = 0;
+		
 	}
 		
 	Motor_Stop();
@@ -46,9 +48,10 @@ void Motor_TempForward(int time) {// 直行指定秒数
 
 void Motor_TempStop(){// 暂停0.5秒
 	timer_count = 0;
+	Motor_Stop();
        		
     while (timer_count < 500){
-       	Motor_Stop();
+
 	}
 }
 
@@ -57,11 +60,13 @@ void Motor_TurnLeft(){// 左转
 		flag_left = 1;
 		timer_count = 0;
 
+		LF = 0;
+		LB = 1;
+		RF = 1;
+		RB = 0;
+
 		while (timer_count < 500){
-			LF = 0;
-			LB = 1;
-			RF = 1;
-			RB = 0;
+			
 		}
 		
 		Motor_Stop();
@@ -75,12 +80,14 @@ void Motor_TurnRight(){// 右转
 	if (flag_right == 0){
 		flag_right = 1;
 		timer_count = 0;
+
+		LF = 1;
+		LB = 0;
+		RF = 0;
+		RB = 1;
 		
 		while (timer_count <500){
-			LF = 1;
-			LB = 0;
-			RF = 0;
-			RB = 1;
+
 		} 
 
 		Motor_Stop();
