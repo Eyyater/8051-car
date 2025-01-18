@@ -1,10 +1,12 @@
 #include <reg51.h>
 
-sbit flag = P2^7;
+sbit signal = P2^7;
 
 int Sensor_Get(){// 获取进球信息 
-	if (flag == 0)
-		return 1;
-	else if(flag == 1)
-		return 0; 
+	int flag;
+	if (signal == 0)
+		flag = 1;
+	else if(signal == 1)
+		flag = 0; 
+	return flag;
 }
