@@ -5,13 +5,13 @@
 #include <reg51.h>
 
 void main() {
-	// int auto_start = 1;// 开始自主部分
+	int auto_start = 1;// 开始自主部分
     int flag_ball = 0;// 是否进球
 
     Motor_Init();// 初始化马达
     Timer0Init();// 初始化定时器
 
-    while (1) {
+    while (auto_start == 1) {
 		flag_ball = Sensor_Get();// 获取红外进球信息
 
 		if (flag_ball == 0){
@@ -22,14 +22,12 @@ void main() {
 		if (flag_ball == 1){
 			// 若进球，关门、暂停、右转、直行至安全区
 //       		Door_Close();
-       		// Motor_TempStop();
-       		// Motor_TurnRight();
+       		Motor_TempStop(.5);
+       		Motor_TurnRight();
 
-			// Motor_TempStop();
-			// Motor_TempForward(3000); //直行3秒
-			// auto_start = 0;// 自主部分结束
-			// Motor_Stop();
-			Motor_Backward();
+			Motor_TempStop(.5);
+			Motor_TempForward(3); //直行3秒
+			auto_start = 0;// 自主部分结束
 		}
 		
     }
