@@ -3,6 +3,7 @@
 
 void Motor_Init(void);
 void Motor_Forward(void);
+void Motor_Backward(void);
 void Motor_TempForward(int time);
 void Motor_Stop(void);
 void Motor_TurnLeft(void);

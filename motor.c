@@ -24,6 +24,13 @@ void Motor_Forward(){// 直行
 	RB = 0;
 }
 
+void Motor_Backward(){// 后退
+	LF = 0;
+	LB = 1;
+	RF = 0;
+	RB = 1;
+}
+
 void  Motor_Stop(){// 两电机停止
 	LF = 0;
 	LB = 0;
