@@ -19,3 +19,14 @@ void T0isp() interrupt 1 {
     timer_count++; // 计数器累加
 
 }
+
+// 独立计时器
+void DelayMs(unsigned int ms) {
+    unsigned int i;
+    for (i = 0; i < ms; i++) {  // 执行 ms 次延时
+        timer_count = 0;         // 每次都清零计数器
+        while (timer_count < 1000) {  // 等待 1000ms（1秒）
+            // 等待中断触发，增加 timer_count
+        }
+    }
+}
