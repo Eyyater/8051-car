@@ -14,10 +14,7 @@ void main() {
     while (auto_start == 1) {
 		flag_ball = Sensor_Get();// 获取红外进球信息
 
-		if (flag_ball == 0){
-			Motor_Forward();
-			// 电机直行
-		} 
+		
 
 		if (flag_ball == 1){
 			// 若进球，关门、暂停、右转、直行至安全区
@@ -30,5 +27,9 @@ void main() {
 			auto_start = 0;// 自主部分结束
 		}
 		
+		else {
+			Motor_Forward();
+			// 电机直行
+		} 
     }
 }
