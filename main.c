@@ -22,11 +22,11 @@ void main() {
 		if (flag_ball == 1){
 			// 若进球，关门、暂停、右转、直行至安全区
 //       		Door_Close();
-       		Motor_TempStop(.5);
-       		Motor_TurnRight();
+       		Motor_TempStop(500);
+       		// Motor_TurnRight();
 
-			Motor_TempStop(.5);
-			Motor_TempForward(3); //直行3秒
+			// Motor_TempStop(500);
+			// Motor_TempForward(3000); //直行3秒
 			auto_start = 0;// 自主部分结束
 		}
 		

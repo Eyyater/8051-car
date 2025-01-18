@@ -38,7 +38,7 @@ void  Motor_Stop(){// 两电机停止
 	RB = 0;
 }
 
-void Motor_TempForward(int time) {// 直行指定秒数
+void Motor_TempForward(int time) {// 直行指定毫秒数
 	LF = 1;
 	LB = 0;
 	RF = 1;
@@ -48,7 +48,7 @@ void Motor_TempForward(int time) {// 直行指定秒数
 	Motor_Stop();
 }
 
-void Motor_TempStop(int time){// 暂停指定秒数
+void Motor_TempStop(int time){// 暂停指定毫秒数
 	Motor_Stop();
     DelayMs(time);
 }
@@ -62,7 +62,7 @@ void Motor_TurnLeft(){// 左转
 		RF = 1;
 		RB = 0;
 
-		DelayMs(.5);
+		DelayMs(500);
 		Motor_Stop();
 	}
 	
@@ -79,7 +79,7 @@ void Motor_TurnRight(){// 右转
 		RF = 0;
 		RB = 1;
 		
-		DelayMs(.5);
+		DelayMs(500);
 		Motor_Stop();
 	}
 
