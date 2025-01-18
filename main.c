@@ -12,9 +12,10 @@ void main() {
     Timer0Init();// 初始化定时器
 
     while (auto_start == 1) {
-		flag_ball = Sensor_Get();// 获取红外进球信息
+		
 
 		if (flag_ball == 0){
+			flag_ball = Sensor_Get();// 获取红外进球信息
 			Motor_Forward();
 			// 电机直行
 		} 
@@ -27,6 +28,7 @@ void main() {
 
 			// Motor_TempStop(500);
 			// Motor_TempForward(3000); //直行3秒
+			// Motor_Stop();
 			auto_start = 0;// 自主部分结束
 		}
 		
