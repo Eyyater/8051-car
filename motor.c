@@ -8,6 +8,7 @@ sbit LB = P0^4;
 
 int flag_left = 0;// 左转标志
 int flag_right = 0;// 右转标志
+int flag_forward = 0;// 短暂直行标志
 
 void Motor_Init() {
     // 初始化电机
@@ -39,13 +40,17 @@ void  Motor_Stop(){// 两电机停止
 }
 
 void Motor_TempForward(int time) {// 直行指定毫秒数
-	LF = 1;
-	LB = 0;
-	RF = 1;
-	RB = 0;
+	if (flag_forward == 0){
+		LF = 1;
+		LB = 0;
+		RF = 1;
+		RB = 0;
 
-	DelayMs(time);
-	Motor_Stop();
+		DelayMs(time);
+		Motor_Stop();
+
+		flag_forward = 1;
+	}
 }
 
 void Motor_TempStop(int time){// 暂停指定毫秒数
