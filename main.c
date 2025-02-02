@@ -1,5 +1,4 @@
 #include "motor.h"
-#include "IR_sensor.h"
 #include "motor_door.h"
 #include "timer.h"
 #include <reg51.h>
@@ -25,7 +24,7 @@ void UART_SendByte(unsigned char byte) {
 
 // 主函数开始
 void main() {
-    unsigned int flag_ball = 0;// 是否进球
+    unsigned int flag_ball = SENSOR;// 是否进球
 	unsigned char sensorState;
 	
 	UART_Init();  // 初始化串口
@@ -34,13 +33,13 @@ void main() {
 
     // 主循环
 	while (1) {
-		if (SENSOR == 1) {
-			flag_ball = Sensor_Get();// 获取红外进球信息
+		if (flag_ball == 1) {
+			flag_ball = SENSOR;// 获取红外进球信息
 			Motor_Forward();
 			// 电机直行
 		} 
 
-		if (SENSOR == 0){
+		if (flag_ball == 0){
 			// 若进球，关门、暂停、右转、直行至安全区
 //       		Door_Close();
        		Motor_TempStop(1000);
