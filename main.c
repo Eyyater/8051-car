@@ -41,7 +41,7 @@ void main() {
 
 		if (flag_ball == 0){
 			// 若进球，关门、暂停、右转、直行至安全区
-//       		Door_Close();
+      		// Door_Close();
        		Motor_TempStop(1000);
        		Motor_TurnRight();
 
