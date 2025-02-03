@@ -1,3 +1,4 @@
+#include "motor.h"
 #include <reg51.h>
 
 unsigned int timer_count = 0; 
@@ -17,7 +18,7 @@ void T0isp() interrupt 1 {
     TL0 = (65536 - 1000) % 256; // 重装载初值，定时1ms
     TH0 = (65536 - 1000) / 256;
     timer_count++; // 计数器累加
-
+    PWM_Update();
 }
 
 // 独立计时器

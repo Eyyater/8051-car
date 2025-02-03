@@ -24,18 +24,19 @@ void UART_SendByte(unsigned char byte) {
 
 // 主函数开始
 void main() {
-    unsigned int flag_ball = SENSOR;// 是否进球
+    unsigned int flag_ball = 1;// 是否进球
 	unsigned char sensorState;
 	
 	UART_Init();  // 初始化串口
-    Motor_Init();// 初始化马达
     Timer0Init();// 初始化定时器
 
     // 主循环
 	while (1) {
 		if (flag_ball == 1) {
-			flag_ball = SENSOR;// 获取红外进球信息
-			Motor_Forward();
+			if (SENSOR == 0)
+				flag_ball = 0;
+			else
+				Motor_Forward(50, 50);
 			// 电机直行
 		} 
 
@@ -43,10 +44,10 @@ void main() {
 			// 若进球，关门、暂停、右转、直行至安全区
 //       		Door_Close();
        		Motor_TempStop(1000);
-       		Motor_TurnRight();
+       		Motor_TurnRight(30, 30);
 
 			Motor_TempStop(500);
-			Motor_TempForward(3000); //直行3秒
+			Motor_TempForward(3000, 50, 50); //直行3秒
 			// Motor_Stop();
 		}
 
