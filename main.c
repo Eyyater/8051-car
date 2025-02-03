@@ -33,24 +33,25 @@ void main() {
 
     // 主循环
 	while (1) {
-		if (flag_ball == 1) {
-			if (SENSOR == 0)
-				flag_ball = 0;
-			else
-				Motor_Forward(50, 50);
-			// 电机直行
-		} 
+		// Motor_Stop(30, 30);
+// 		if (flag_ball == 1) {
+// 			if (SENSOR == 0)
+// 				flag_ball = 0;
+// 			else
+// 				Motor_Forward(50, 50);
+// 			// 电机直行
+// 		} 
 
-		if (flag_ball == 0){
-			// 若进球，关门、暂停、右转、直行至安全区
-//       		Door_Close();
-       		Motor_TempStop(1000);
-       		Motor_TurnRight(30, 30);
+// 		if (flag_ball == 0){
+// 			// 若进球，关门、暂停、右转、直行至安全区
+// //       		Door_Close();
+//        		Motor_TempStop(1000);
+//        		Motor_TurnRight(30, 30);
 
-			Motor_TempStop(500);
-			Motor_TempForward(3000, 50, 50); //直行3秒
-			// Motor_Stop();
-		}
+// 			Motor_TempStop(500);
+// 			Motor_TempForward(3000, 50, 50); //直行3秒
+// 			// Motor_Stop();
+// 		}
 
 		// sensorState = SENSOR;  // 读取传感器状态
 
