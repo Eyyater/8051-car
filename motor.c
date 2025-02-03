@@ -2,10 +2,10 @@
 #include <reg51.h>
 
 // 引脚定义
-sbit RIGHT_IN1 = P1^0;  // 右电机正转
-sbit RIGHT_IN2 = P1^1;  // 右电机反转
-sbit LEFT_IN3  = P1^2;  // 左电机正转
-sbit LEFT_IN4  = P1^3;  // 左电机反转
+sbit RIGHT_IN1 = P1^1;  // 右电机正转
+sbit RIGHT_IN2 = P1^2;  // 右电机反转
+sbit LEFT_IN3  = P1^3;  // 左电机正转
+sbit LEFT_IN4  = P1^4;  // 左电机反转
 
 // 标志
 unsigned char flag_left = 0;// 左转标志
@@ -16,6 +16,17 @@ unsigned char flag_forward = 0;// 短暂直行标志
 unsigned char left_duty = 0, right_duty = 0;  // 占空比（0-100）
 char left_dir = 0, right_dir = 0;             // 方向（1 正转，-1 反转，0 停止）
 unsigned char pwm_count = 0;                  // PWM 计数器
+
+void Motor_Init(){
+	RIGHT_IN1 = 0;
+	RIGHT_IN2 = 0;
+    LEFT_IN3 = 0;
+    LEFT_IN4 = 0;
+	left_dir = 0;
+    right_dir = 0;
+    left_duty = 0;
+    right_duty = 0;
+}
 
 // PWM 更新（定时器中断里调用）
 void PWM_Update() {

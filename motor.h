@@ -1,6 +1,7 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 
+void Motor_Init(void);
 void PWM_Update(void);
 void Motor_Forward(unsigned char left_duty, unsigned char right_duty);
 void Motor_Backward(unsigned char left_duty, unsigned char right_duty);
