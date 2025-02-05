@@ -15,8 +15,10 @@ void main() {
     // 主循环
 	while (1) {
 		if (flag_ball == 1) {
-			flag_ball = SENSOR;// 获取红外进球信息
-			Motor_Forward();
+			if (SENSOR == 0)
+				flag_ball = 0;
+			else
+				Motor_Forward(3, 3);
 			// 电机直行
 		} 
 
@@ -24,13 +26,14 @@ void main() {
 			// 若进球，关门、暂停、右转、直行至安全区
       		// Door_Close();
        		Motor_TempStop(1000);
-       		Motor_TurnRight();
+       		Motor_TurnRight(3, 3);
 
 			Motor_TempStop(500);
-			Motor_TempForward(3000); //直行3秒
+			Motor_TempForward(3000, 3, 3); //直行3秒
 			// Motor_Stop();
 		}
 
+    	DelayMs(100);  // 每 100ms 循环一次
     	DelayMs(100);  // 每 100ms 循环一次
     }
 }
