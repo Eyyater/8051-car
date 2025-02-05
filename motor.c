@@ -2,10 +2,10 @@
 #include <reg51.h>
 
 // 引脚定义
-sbit RF = P1^1;  // 右电机正转
-sbit RB = P1^2;  // 右电机反转
-sbit LF  = P1^3;  // 左电机正转
-sbit LB  = P1^4;  // 左电机反转
+sbit RF = P0^1;  // 右电机正转
+sbit RB = P0^2;  // 右电机反转
+sbit LF  = P0^3;  // 左电机正转
+sbit LB  = P0^4;  // 左电机反转
 
 // 标志
 unsigned char flag_left = 0;// 左转标志
@@ -15,7 +15,7 @@ unsigned char flag_forward = 0;// 短暂直行标志
 // 变量
 char left_dir = 0, right_dir = 0;// 方向
 unsigned char left_duty = 0, right_duty = 0;// 目标PWM
-unsigned char PWM_count = 0;//实际PWM
+unsigned char PWM_count = 0;// 实际PWM
 
 // 初始化电机
 void Motor_Init(){
@@ -27,37 +27,18 @@ void Motor_Init(){
 
 // PWM 更新
 void PWM_Update(){
-    PWM_count = (PWM_count + 1) % 100;
+    PWM_count = (PWM_count + 1) % 10;
 
     // 左电机
-    if (PWM_count < left_duty){
-        LF = 1;
-        LB = 0;
-    }
-    // else if (PWM_count < left_duty && left_dir == -1){
-    //     LF = 0;
-    //     LB = 1;
-    // }
-    else{
-        LF = 0;
-        LB = 0;
-    }
+	LF = (left_dir == 1 && PWM_count < left_duty);
+	LB = (left_dir == -1 && PWM_count < left_duty);
 
     //右电机
-    if (PWM_count < right_duty){
-        RF = 1;
-        RB = 0;
-    }
-    // else if (PWM_count < right_duty && right_dir == -1){
-    //     RF = 0;
-    //     RB = 1;
-    // }
-    else{
-        RF = 0;
-        RB = 0;
-    }
+    RF = (right_dir == 1 && PWM_count < right_duty);
+	RB = (right_dir == -1 && PWM_count < right_duty);
 }
 
+// 设置电机
 void SetLeftMotor(char set_dir, unsigned char set_duty){
     left_dir = set_dir;
     left_duty = set_duty;
