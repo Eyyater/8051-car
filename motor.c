@@ -2,10 +2,10 @@
 #include <reg51.h>
 
 // 引脚定义
-sbit RF = P0^1;  // 右电机正转
-sbit RB = P0^2;  // 右电机反转
-sbit LF  = P0^3;  // 左电机正转
-sbit LB  = P0^4;  // 左电机反转
+sbit RF = P1^0;  // 右电机正转
+sbit RB = P1^1;  // 右电机反转
+sbit LF  = P1^2;  // 左电机正转
+sbit LB  = P1^3;  // 左电机反转
 
 // 变量
 char left_dir = 0, right_dir = 0;// 方向

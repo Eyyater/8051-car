@@ -25,4 +25,4 @@ void T0isp() interrupt 1 {
 void DelayMs(unsigned int ms) {
     unsigned int target_count = timer_count + 5 * ms;
     while (timer_count < target_count);  // 等待目标时间到达
-} 
+}
