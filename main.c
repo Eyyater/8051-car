@@ -9,7 +9,7 @@ sbit SENSOR = P2^7;  // 传感器连接 P27
 void main() {
     unsigned int flag_ball = 1;// 是否进球
 	
-	Motor_Init();// 初始化电机
+	UART_Init();  // 初始化串口
     Timer0Init();// 初始化定时器
 
     // 主循环
