@@ -2,15 +2,10 @@
 #include <reg51.h>
 
 // 引脚定义
-sbit RF = P0^1;  // 右电机正转
-sbit RB = P0^2;  // 右电机反转
-sbit LF  = P0^3;  // 左电机正转
-sbit LB  = P0^4;  // 左电机反转
-
-// 标志
-unsigned char flag_left = 0;// 左转标志
-unsigned char flag_right = 0;// 右转标志
-unsigned char flag_forward = 0;// 短暂直行标志
+sbit RF = P1^0;  // 右电机正转
+sbit RB = P1^1;  // 右电机反转
+sbit LF  = P1^2;  // 左电机正转
+sbit LB  = P1^3;  // 左电机反转
 
 // 变量
 char left_dir = 0, right_dir = 0;// 方向
@@ -79,15 +74,11 @@ void Motor_TempForward(
 	unsigned char left_duty,
 	unsigned char right_duty
 ) {
-	if (flag_forward == 0){
-		flag_forward = 1;
+	SetLeftMotor(1, left_duty);
+	SetRightMotor(1, right_duty);
 
-		SetLeftMotor(1, left_duty);
-		SetRightMotor(1, right_duty);
-
-		DelayMs(time);
-		Motor_Stop();
-	}
+	DelayMs(time);
+	Motor_Stop();
 }
 
 // 暂停指定毫秒数
@@ -101,15 +92,11 @@ void Motor_TurnLeft(
 	unsigned char left_duty,
 	unsigned char right_duty
 ){
-	if (flag_left == 0){
-		flag_left = 1;
+	SetLeftMotor(-1, left_duty);
+	SetRightMotor(1, right_duty);
 
-		SetLeftMotor(-1, left_duty);
-		SetRightMotor(1, right_duty);
-
-		DelayMs(500);
-		Motor_Stop();
-	}
+	DelayMs(500);
+	Motor_Stop();
 } 
 
 // 右转
@@ -117,13 +104,9 @@ void Motor_TurnRight(
 	unsigned char left_duty,
 	unsigned char right_duty
 ){
-	if (flag_right == 0){
-		flag_right = 1;
-
-		SetLeftMotor(1, left_duty);
-		SetRightMotor(-1, right_duty);
+	SetLeftMotor(1, left_duty);
+	SetRightMotor(-1, right_duty);
 		
-		DelayMs(500);
-		Motor_Stop();
-	}
+	DelayMs(500);
+	Motor_Stop();
 }
