@@ -2,10 +2,10 @@
 #include <reg51.h>
 
 // 引脚定义
-sbit RF = P1^0;  // 右电机正转
-sbit RB = P1^1;  // 右电机反转
-sbit LF  = P1^2;  // 左电机正转
-sbit LB  = P1^3;  // 左电机反转
+sbit LF = P3^4; // 右电机正转
+sbit LB = P3^5; // 右电机反转
+sbit RF  = P3^6;  // 左电机反转
+sbit RB  = P3^7;  // 左电机正转
 
 // 变量
 char left_dir = 0, right_dir = 0;// 方向
@@ -95,7 +95,7 @@ void Motor_TurnLeft(
 	SetLeftMotor(-1, left_duty);
 	SetRightMotor(1, right_duty);
 
-	DelayMs(500);
+	DelayMs(200);
 	Motor_Stop();
 } 
 
@@ -107,6 +107,6 @@ void Motor_TurnRight(
 	SetLeftMotor(1, left_duty);
 	SetRightMotor(-1, right_duty);
 		
-	DelayMs(500);
+	DelayMs(200);
 	Motor_Stop();
 }
