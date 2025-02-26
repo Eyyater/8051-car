@@ -3,7 +3,7 @@
 #include "timer.h"
 #include <reg51.h>
 
-sbit SENSOR = P2^7;  // 传感器连接 P27
+sbit SENSOR = P2^6;  // 传感器连接 P27坏了
 
 // 串口初始化
 void UART_Init() {
